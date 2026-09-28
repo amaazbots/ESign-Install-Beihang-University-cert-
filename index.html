@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050816">
+
+    <title>Install ESign | Amaazbots</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            font-family: -apple-system, BlinkMacSystemFont,
+                "SF Pro Display", "Segoe UI", Arial, sans-serif;
+            color: #fff;
+            background:
+                radial-gradient(circle at 15% 20%,
+                    rgba(0, 140, 255, 0.24), transparent 35%),
+                radial-gradient(circle at 85% 80%,
+                    rgba(0, 220, 255, 0.16), transparent 35%),
+                #050816;
+        }
+
+        .background {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            animation: float 9s ease-in-out infinite alternate;
+        }
+
+        .orb-one {
+            top: -100px;
+            left: -80px;
+            background: #007aff;
+        }
+
+        .orb-two {
+            bottom: -100px;
+            right: -80px;
+            background: #00d9ff;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 40px); }
+        }
+
+        .card {
+            position: relative;
+            width: 440px;
+            max-width: 100%;
+            padding: 38px 28px 25px;
+            text-align: center;
+            background: rgba(12, 22, 42, 0.78);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 30px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07);
+            animation: appear 0.7s ease;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo {
+            width: 118px;
+            height: 118px;
+            object-fit: contain;
+            border-radius: 27px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 25px rgba(0, 170, 255, 0.35));
+            animation: logoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 850;
+            letter-spacing: -1.5px;
+            margin-bottom: 9px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.58);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            padding: 9px 13px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.045);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.78);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .certificate {
+            padding: 19px;
+            margin-bottom: 20px;
+            text-align: left;
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(0, 145, 255, 0.12),
+                rgba(0, 220, 255, 0.045)
+            );
+            border: 1px solid rgba(0, 190, 255, 0.18);
+        }
+
+        .certificate-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.52);
+            margin-bottom: 10px;
+        }
+
+        .certificate-name {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.5;
+            word-break: break-word;
+        }
+
+        .certificate-id {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #75cfff;
+            word-break: break-all;
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 15px;
+            margin-bottom: 20px;
+            border-radius: 50px;
+            background: rgba(35, 205, 115, 0.09);
+            border: 1px solid rgba(35, 205, 115, 0.18);
+            color: #67e9a0;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #45e58a;
+            box-shadow: 0 0 10px #45e58a;
+        }
+
+        .install-btn {
+            display: block;
+            width: 100%;
+            padding: 17px 20px;
+            border: none;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #007aff, #00c6ff);
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(0, 145, 255, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .install-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 17px 35px rgba(0, 145, 255, 0.38);
+        }
+
+        .install-btn:active {
+            transform: scale(0.98);
+        }
+
+        .countdown {
+            min-height: 18px;
+            margin-top: 15px;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 12px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            padding-top: 19px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.35);
+            font-size: 11px;
+            letter-spacing: 0.3px;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 32px 21px 23px;
+                border-radius: 26px;
+            }
+
+            .logo {
+                width: 105px;
+                height: 105px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="orb orb-one"></div>
+        <div class="orb orb-two"></div>
+    </div>
+
+    <main class="card">
+
+        <img
+            src="esign-logo.png"
+            alt="ESign Logo"
+            class="logo"
+        >
+
+        <h1>ESign</h1>
+
+        <p class="subtitle">
+            Install ESign directly on your iPhone or iPad.
+            Get started with the installation below.
+        </p>
+
+        <div class="tags">
+            <span class="tag">📱 iOS & iPadOS</span>
+            <span class="tag">⚡ OTA Install</span>
+            <span class="tag">📦 App Installer</span>
+        </div>
+
+        <div class="certificate">
+            <div class="certificate-label">
+                🔐 Signing Certificate
+            </div>
+
+            <div class="certificate-name">
+                Beihang University
+            </div>
+
+            <div class="certificate-id">
+                ID: ZXB3TS7QD4
+            </div>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Installation Available
+        </div>
+
+        <button class="install-btn" onclick="installESign()">
+            🚀 Install ESign
+        </button>
+
+        <div class="countdown" id="countdown">
+            Tap the button above to begin installation.
+        </div>
+
+        <div class="footer">
+            Powered by Amaazbots
+        </div>
+
+    </main>
+
+    <script>
+        const installURL =
+            "itms-services://?action=download-manifest&url=https%3A%2F%2Fskibiditech.co%2Fmanifest.php%3Fbid%3Dcom.skibidi.esign%26certID%3DZXB3TS7QD4%26name%3DESign";
+
+        function installESign() {
+            document.getElementById("countdown").textContent =
+                "Opening ESign installation...";
+
+            window.location.href = installURL;
+        }
+    </script>
+
+</body>
+</html>
